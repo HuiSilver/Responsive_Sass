@@ -1,0 +1,4 @@
+@function get-vw($target) {
+  $vw-context: (720 * 0.01) * 1px;
+  @return (($target * 1px) / $vw-context) * 1vw;
+}

@@ -1,0 +1,26 @@
+@import "Get-vw/index.scss";
+
+@mixin responsive($tag, $size...) {
+  $a: null;
+  $b: null;
+  @each $var in $size {
+    @if type-of($var) == number {
+      @if (unitless($var) ==false) {
+        $a: append($a, $var);
+        $b: append($b, $var);
+      } @else {
+        $a: append($a, get-vw1280($var));
+        $b: append($b, get-vw($var));
+      }
+    } @else {
+      $a: append($a, $var);
+      $b: append($b, $var);
+    }
+  }
+  @media (orientation: landscape) {
+    #{$tag}: $a;
+  }
+  @media (orientation: portrait) {
+    #{$tag}: $b;
+  }
+}
